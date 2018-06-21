@@ -25,15 +25,15 @@ public class RoundMngTest {
 		BigDecimal g = new BigDecimal(1.00).setScale(2, RoundingMode.HALF_UP); 
 		BigDecimal h = roundToNearestHalf(new BigDecimal(1.0099999)); 
 		
-		BigDecimal i = new BigDecimal(75437754757.55).setScale(2, RoundingMode.HALF_UP); 
-		BigDecimal l = roundToNearestHalf(new BigDecimal(75437754757.5599999)); 
+		BigDecimal i = new BigDecimal(0.05).setScale(2, RoundingMode.HALF_UP); 
+		BigDecimal l = roundToNearestHalf(new BigDecimal(0.036475)); 
 		
-		
-		
+				
 		assertEquals(a,b);
 		assertEquals(c,d);
 		assertEquals(e,f);
 		assertEquals(g,h);
+		assertEquals(i,l);
 		
 	}
 
