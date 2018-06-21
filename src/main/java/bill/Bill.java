@@ -1,6 +1,7 @@
 package bill;
 
 
+import java.awt.Desktop;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -42,11 +43,11 @@ public class Bill {
 				
 		String prefix = "receipt";
 		String suffix = ".txt";
-		File tempFile;
+		File tempFile = null;
 		BufferedWriter bw = null; 
 		try {				
 			tempFile = File.createTempFile(prefix, suffix);
-			bw = new BufferedWriter(new FileWriter(tempFile)); 
+			bw = new BufferedWriter(new FileWriter(tempFile.getCanonicalFile())); 
 			print(bw,"----------------------------------------");
 			
 			for(Product p:keySet){
@@ -57,8 +58,7 @@ public class Bill {
 			print(bw,"Total: "+cart.getTotalAmount());
 			print(bw,"----------------------------------------");
 			
-			Runtime runtime = Runtime.getRuntime();
-			runtime.exec("notepad "+tempFile.getCanonicalFile());
+			
 			System.out.format("Canonical filename: %s\n", tempFile.getCanonicalFile());
 
 		} catch (IOException e) {
@@ -68,16 +68,78 @@ public class Bill {
 			try {
 				if(bw!=null)
 					bw.close();
+				/*
+				 * The File opening process with Notepad had some issues 
+				 * 	when called before Buffered Writer closure.
+				 */
+				open(tempFile); 
+				
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+
 
 		}
 	}
 	
 	private void print(BufferedWriter bw, String s) throws IOException{
-		bw.write(s); 
+		bw.write(s);
 		bw.write("\r\n"); 
+	}
+	
+	public static boolean open(File file)
+	{
+	    try
+	    {
+	        if (OSDetector.isWindows())
+	        {
+	            Runtime.getRuntime().exec(new String[]
+	            {"rundll32", "url.dll,FileProtocolHandler",
+	             file.getAbsolutePath()});
+	            return true;
+	        } else if (OSDetector.isLinux() || OSDetector.isMac())
+	        {
+	            Runtime.getRuntime().exec(new String[]{"/usr/bin/open",
+	                                                   file.getAbsolutePath()});
+	            return true;
+	        } else
+	        {
+	            // Unknown OS, try with desktop
+	            if (Desktop.isDesktopSupported())
+	            {
+	                Desktop.getDesktop().open(file);
+	                return true;
+	            }
+	            else
+	            {
+	                return false;
+	            }
+	        }
+	    } catch (Exception e)
+	    {
+	        e.printStackTrace(System.err);
+	        return false;
+	    }
+	}
+	
+	private static class OSDetector
+	{
+	    private static boolean isWindows = false;
+	    private static boolean isLinux = false;
+	    private static boolean isMac = false;
+
+	    static
+	    {
+	        String os = System.getProperty("os.name").toLowerCase();
+	        isWindows = os.contains("win");
+	        isLinux = os.contains("nux") || os.contains("nix");
+	        isMac = os.contains("mac");
+	    }
+
+	    public static boolean isWindows() { return isWindows; }
+	    public static boolean isLinux() { return isLinux; }
+	    public static boolean isMac() { return isMac; };
+
 	}
 
 

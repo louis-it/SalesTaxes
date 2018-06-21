@@ -14,12 +14,10 @@ public class Main {
 	final static boolean IMPORTED = true; 
 	final static boolean LOCAL = false; 
 
-	public static void main(String[] args) {
-		
+	public static void main(String[] args) {		
 		testCase1();
 		testCase2();
-		testCase3();
-	
+		testCase3();	
 	}
 	
 	private static void testCase1(){
