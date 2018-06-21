@@ -1,8 +1,8 @@
 package product;
 
 import java.math.BigDecimal;
+import static util.RoundMng.roundToNearestHalf;
 
-import util.RoundMng;
 
 public class LocalProduct extends Product{
 	
@@ -15,7 +15,7 @@ public class LocalProduct extends Product{
 
 	@Override
 	protected void computeFinalTax() {		
-		finalTax = RoundMng.roundToNearestHalf(taxRate.multiply(netAmount));	
+		finalTax = roundToNearestHalf(taxRate.multiply(netAmount));	
 	}
 	
 	@Override
