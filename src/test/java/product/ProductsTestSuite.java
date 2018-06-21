@@ -1,0 +1,11 @@
+package product;
+
+import org.junit.runner.RunWith;
+import org.junit.runners.Suite;
+import org.junit.runners.Suite.SuiteClasses;
+
+@RunWith(Suite.class)
+@SuiteClasses({ ImportedProductTest.class, LocalProductTest.class, ProductFactoryTest.class, ProductTest.class })
+public class ProductsTestSuite {
+
+}

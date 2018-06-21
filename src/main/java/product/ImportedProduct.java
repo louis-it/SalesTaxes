@@ -6,7 +6,7 @@ import java.math.RoundingMode;
 
 public class ImportedProduct extends Product{
 	
-	final private static BigDecimal TAX_ON_IMPORTED_GOODS  = new BigDecimal(0.05).setScale(2, RoundingMode.HALF_EVEN); 
+	final private static BigDecimal TAX_ON_IMPORTED_GOODS  = new BigDecimal(0.05).setScale(2, RoundingMode.HALF_UP); 
 
 	public ImportedProduct( String description, BigDecimal amount, ProductType type ){
 		super( description, amount, type);	

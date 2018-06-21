@@ -3,8 +3,8 @@ package main;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-import bill.Bill;
-import cart.ShoppingCart;
+import order.Bill;
+import order.ShoppingCart;
 import product.Product;
 import product.ProductFactory;
 import product.ProductType;
@@ -54,5 +54,7 @@ public class Main {
 		Bill myBill = new Bill(myCart); 
 		myBill.printTXTBill();
 	}
+	
+	
 
 }

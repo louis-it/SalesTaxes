@@ -1,4 +1,4 @@
-package bill;
+package order;
 
 
 import java.awt.Desktop;
@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.Set;
 
-import cart.ShoppingCart;
 import product.Product;
 
 public class Bill {

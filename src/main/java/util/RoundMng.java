@@ -9,7 +9,7 @@ public class RoundMng {
 	
 
 	public static BigDecimal roundToNearestHalf(BigDecimal amount){
-		return (amount.multiply(CONSTANT).setScale(0, RoundingMode.HALF_UP)).divide(CONSTANT,2, RoundingMode.HALF_EVEN); 
+		return (amount.multiply(CONSTANT).setScale(0, RoundingMode.CEILING)).divide(CONSTANT,2, RoundingMode.HALF_UP); 
 	}
 
 }

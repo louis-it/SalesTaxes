@@ -13,7 +13,7 @@ public class RoundMngTest {
 	@Test
 	public void testRoundToNearestHalf() {
 		
-		BigDecimal a = new BigDecimal(75437754757.55).setScale(2, RoundingMode.HALF_UP); 
+		BigDecimal a = new BigDecimal(75437754757.60).setScale(2, RoundingMode.HALF_UP); 
 		BigDecimal b = roundToNearestHalf(new BigDecimal(75437754757.5599999)); 		
 		
 		BigDecimal c = new BigDecimal(10000000.00).setScale(2, RoundingMode.HALF_UP); 
@@ -22,7 +22,7 @@ public class RoundMngTest {
 		BigDecimal e = new BigDecimal(646366.60).setScale(2, RoundingMode.HALF_UP); 
 		BigDecimal f = roundToNearestHalf(new BigDecimal(646366.5799999));
 		
-		BigDecimal g = new BigDecimal(1.00).setScale(2, RoundingMode.HALF_UP); 
+		BigDecimal g = new BigDecimal(1.05).setScale(2, RoundingMode.HALF_UP); 
 		BigDecimal h = roundToNearestHalf(new BigDecimal(1.0099999)); 
 		
 		BigDecimal i = new BigDecimal(0.05).setScale(2, RoundingMode.HALF_UP); 
